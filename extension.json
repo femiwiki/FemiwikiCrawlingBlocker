@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "FemiwikiCrawlingBlocker",
+  "version": "1.0.0",
+  "author": "페미위키",
+  "url": "https://femiwiki.com",
+  "description": "페미위키에 최적화된 크롤링 봇 등을 방어하는 블로커입니다.",
+  "type": "other",
+  "Hooks": {
+    "MediaWikiPerformAction": "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks::onMediaWikiPerformAction",
+    "SpecialPageBeforeExecute": "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks::onSpecialPageBeforeExecute"
+  },
+  "requires": {
+    "MediaWiki": ">= 1.31"
+  },
+  "AutoloadClasses": {
+    "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks": "FemiwikiCrawlingBlocker.php"
+  },
+  "MessagesDirs": {
+    "FemiwikiCrawlingBlocker": "i18n"
+  }
+}

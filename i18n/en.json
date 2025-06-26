@@ -1,0 +1,8 @@
+{
+  "@metadata": {
+    "authors": ["Femiwiki"]
+  },
+  "recaptcha-blocker-title": "We are checking if you are a robot",
+  "recaptcha-blocker-please-wait": "Please wait a moment...",
+  "recaptcha-blocker-please-wait-description": "We are checking if you are a robot."
+}
