@@ -1,0 +1,8 @@
+{
+  "@metadata": {
+    "authors": []
+  },
+  "recaptcha-blocker-title": "Title displayed on the reCAPTCHA blocking page.",
+  "recaptcha-blocker-please-wait": "Message displayed while reCAPTCHA is loading.",
+  "recaptcha-blocker-please-wait-description": "Additional descriptive text shown below the please wait message."
+}
