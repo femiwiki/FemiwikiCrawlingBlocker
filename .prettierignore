@@ -1,0 +1,14 @@
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# Maintained by translatewiki
+/i18n/
+
+# Maneged by bots
+skin.json
+extension.json
+
+# External files
+.github/workflows/dependencies.yaml
+.github/workflows/phan_dependencies.yaml
