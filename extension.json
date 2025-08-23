@@ -6,9 +6,15 @@
   "url": "https://femiwiki.com",
   "description": "페미위키에 최적화된 크롤링 봇 등을 방어하는 블로커입니다.",
   "type": "other",
+  "HookHandlers": {
+    "main": {
+      "class": "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks",
+      "services": ["MainConfig"]
+    }
+  },
   "Hooks": {
-    "MediaWikiPerformAction": "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks::onMediaWikiPerformAction",
-    "SpecialPageBeforeExecute": "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks::onSpecialPageBeforeExecute"
+    "MediaWikiPerformAction": "main",
+    "SpecialPageBeforeExecute": "main"
   },
   "requires": {
     "MediaWiki": ">= 1.31"
