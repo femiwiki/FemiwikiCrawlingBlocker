@@ -9,16 +9,14 @@
 
 namespace FemiwikiCrawlingBlocker;
 
-use Article;
-use MediaWiki\Actions\ActionEntryPoint;
-use OutputPage;
 use RequestContext;
-use SpecialPage;
-use Title;
 use User;
 use WebRequest;
 
-class FemiwikiCrawlingBlockerHooks {
+class FemiwikiCrawlingBlockerHooks implements
+	\MediaWiki\Hook\MediaWikiPerformActionHook,
+	\MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook
+	{
 	private const COOKIE_NAME = "FemiwikiCrawlingBlockerPassed";
 	/** 1일 (1 day) */
 	private const COOKIE_EXPIRY = 86400;
@@ -28,21 +26,15 @@ class FemiwikiCrawlingBlockerHooks {
 	 *
 	 * Perform CAPTCHA verification during MediaWiki actions.
 	 *
-	 * @param OutputPage $output
-	 * @param Article $article
-	 * @param Title $title
-	 * @param User $user
-	 * @param WebRequest $request
-	 * @param ActionEntryPoint $ActionEntryPoint
-	 * @return bool
+	 * @inheritDoc
 	 */
-	public static function onMediaWikiPerformAction(
-		OutputPage $output,
-		Article $article,
-		Title $title,
-		User $user,
-		WebRequest $request,
-		ActionEntryPoint $ActionEntryPoint
+	public function onMediaWikiPerformAction(
+		$output,
+		$article,
+		$title,
+		$user,
+		$request,
+		$ActionEntryPoint
 	): bool {
 		$type = $request->getVal( "type" );
 		$action = $request->getVal( "action" );
@@ -67,12 +59,10 @@ class FemiwikiCrawlingBlockerHooks {
 	 *
 	 * Perform CAPTCHA verification before executing a SpecialPage.
 	 *
-	 * @param SpecialPage $specialPage
-	 * @param string|null $subPage
-	 * @return bool
+	 * @inheritDoc
 	 */
-	public static function onSpecialPageBeforeExecute(
-		SpecialPage $specialPage,
+	public function onSpecialPageBeforeExecute(
+		$specialPage,
 		$subPage
 	): bool {
 		$user = $specialPage->getContext()->getUser();
