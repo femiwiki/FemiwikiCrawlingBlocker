@@ -14,7 +14,7 @@
     "MediaWiki": ">= 1.31"
   },
   "AutoloadClasses": {
-    "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks": "FemiwikiCrawlingBlocker.php"
+    "FemiwikiCrawlingBlocker\\FemiwikiCrawlingBlockerHooks": "FemiwikiCrawlingBlockerHooks.php"
   },
   "MessagesDirs": {
     "FemiwikiCrawlingBlocker": "i18n"
