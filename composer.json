@@ -1,5 +1,5 @@
 {
-  "name": "femiwiki/FemiwikiCrawlingBlocker",
+  "name": "femiwiki/femiwiki-crawling-blocker",
   "description": "MediaWiki special page crawler blocking extension",
   "require-dev": {
     "mediawiki/mediawiki-codesniffer": "47.0.0",
