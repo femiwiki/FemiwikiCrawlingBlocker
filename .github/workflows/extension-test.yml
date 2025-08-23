@@ -38,7 +38,7 @@ jobs:
           - phpunit-standalone
           - npm-test
           - composer-test
-          # - selenium
+          - selenium
           # - qunit
           # - api-testing
 
