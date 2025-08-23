@@ -24,5 +24,11 @@
   },
   "MessagesDirs": {
     "FemiwikiCrawlingBlocker": "i18n"
+  },
+  "config": {
+    "FemiwikiCrawlingBlockerEnabled": {
+      "value": false,
+      "description": "Whether to enabled this extension"
+    }
   }
 }

@@ -9,6 +9,7 @@
 
 namespace FemiwikiCrawlingBlocker;
 
+use Config;
 use RequestContext;
 use User;
 use WebRequest;
@@ -20,6 +21,15 @@ class FemiwikiCrawlingBlockerHooks implements
 	private const COOKIE_NAME = "FemiwikiCrawlingBlockerPassed";
 	/** 1일 (1 day) */
 	private const COOKIE_EXPIRY = 86400;
+	/** @var Config */
+	private $config;
+
+	/**
+	 * @param Config $config
+	 */
+	public function __construct( Config $config ) {
+		$this->config = $config;
+	}
 
 	/**
 	 * MediaWiki 액션 처리 시 CAPTCHA 검증을 수행합니다.
@@ -35,7 +45,10 @@ class FemiwikiCrawlingBlockerHooks implements
 		$user,
 		$request,
 		$ActionEntryPoint
-	): bool {
+	) {
+		if ( !$this->config->get( 'FemiwikiCrawlingBlockerEnabled' ) ) {
+			return true;
+		}
 		$type = $request->getVal( "type" );
 		$action = $request->getVal( "action" );
 		$diffId = (int)$request->getVal( "diff" );
@@ -64,7 +77,10 @@ class FemiwikiCrawlingBlockerHooks implements
 	public function onSpecialPageBeforeExecute(
 		$specialPage,
 		$subPage
-	): bool {
+	) {
+		if ( !$this->config->get( 'FemiwikiCrawlingBlockerEnabled' ) ) {
+			return true;
+		}
 		$user = $specialPage->getContext()->getUser();
 		$request = RequestContext::getMain()->getRequest();
 
