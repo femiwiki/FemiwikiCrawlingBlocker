@@ -20,7 +20,8 @@ use WebRequest;
 
 class FemiwikiCrawlingBlockerHooks {
 	private const COOKIE_NAME = "FemiwikiCrawlingBlockerPassed";
-	private const COOKIE_EXPIRY = 86400; // 1일 (1 day)
+	/** 1일 (1 day) */
+	private const COOKIE_EXPIRY = 86400;
 
 	/**
 	 * MediaWiki 액션 처리 시 CAPTCHA 검증을 수행합니다.
@@ -55,7 +56,7 @@ class FemiwikiCrawlingBlockerHooks {
 				$diffId > 0 ||
 				$oldId > 0 )
 		) {
-			return self::CaptchaExec( $request, $user );
+			return self::captchaExec( $request, $user );
 		}
 
 		return true;
@@ -77,7 +78,7 @@ class FemiwikiCrawlingBlockerHooks {
 		$user = $specialPage->getContext()->getUser();
 		$request = RequestContext::getMain()->getRequest();
 
-		return self::CaptchaExec( $request, $user );
+		return self::captchaExec( $request, $user );
 	}
 
 	/**
@@ -89,7 +90,7 @@ class FemiwikiCrawlingBlockerHooks {
 	 * @param User $user
 	 * @return bool
 	 */
-	private static function CaptchaExec( WebRequest $request, User $user ): bool {
+	private static function captchaExec( WebRequest $request, User $user ): bool {
 		$requestUrl = $request->getRequestURL();
 		$verifyCode = self::generateVerifyCode();
 
@@ -100,10 +101,8 @@ class FemiwikiCrawlingBlockerHooks {
 			return true;
 		}
 
-		if (
-			$request->wasPosted() &&
-			( $token = $request->getVal( "g-recaptcha-response" ) )
-		) {
+		if ( $request->wasPosted() ) {
+			$token = $request->getVal( "g-recaptcha-response" );
 			if ( self::verifyRecaptcha( $token ) ) {
 				setcookie( self::COOKIE_NAME, $verifyCode, [
 					"expires" => time() + self::COOKIE_EXPIRY,
@@ -113,8 +112,8 @@ class FemiwikiCrawlingBlockerHooks {
 					"samesite" => "Lax",
 				] );
 
-				header( "Location: " . $requestUrl );
-				exit();
+					header( "Location: " . $requestUrl );
+					exit();
 			}
 		}
 
@@ -133,7 +132,8 @@ class FemiwikiCrawlingBlockerHooks {
 		global $wgReCaptchaSiteKey, $wgReCaptchaSecretKey;
 
 		$keys = [
-			"DATE" => date( "Y-m-d" ), // 날짜가 바뀌면 다시 시작
+			// 날짜가 바뀌면 다시 시작
+			"DATE" => date( "Y-m-d" ),
 			"HOSTNAME" => $_SERVER["HTTP_HOST"] ?? "unknown",
 			"REMOTE_ADDR" => $_SERVER["REMOTE_ADDR"] ?? "unknown",
 			"REMOTE_HOST" => $_SERVER["REMOTE_HOST"] ?? "unknown",
@@ -234,7 +234,8 @@ class FemiwikiCrawlingBlockerHooks {
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #263038; height: 100%; }
-.loader { width: 48px; height: 48px; border: 5px solid #fff; border-bottom-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+.loader { width: 48px; height: 48px; border: 5px solid #fff; border-bottom-color: transparent;
+border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 #container { display: flex; align-items: center; justify-content: center; height: 100%; }
 #box { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 70px 20px; text-align: center; width: 300px; }
