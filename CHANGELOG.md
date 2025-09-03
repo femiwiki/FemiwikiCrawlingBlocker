@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/femiwiki/FemiwikiCrawlingBlocker/compare/v2.0.0...v2.0.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* Handle FauxRequest case ([#18](https://github.com/femiwiki/FemiwikiCrawlingBlocker/issues/18)) ([9567dcd](https://github.com/femiwiki/FemiwikiCrawlingBlocker/commit/9567dcdeea6e188631f8995c2a9146be53950e97))
+
 ## [2.0.0](https://github.com/femiwiki/FemiwikiCrawlingBlocker/compare/v1.0.0...v2.0.0) (2025-08-23)
 
 
