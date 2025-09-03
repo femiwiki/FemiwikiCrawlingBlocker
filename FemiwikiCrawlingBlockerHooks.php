@@ -10,6 +10,7 @@
 namespace FemiwikiCrawlingBlocker;
 
 use Config;
+use MWException;
 use RequestContext;
 use User;
 use WebRequest;
@@ -97,7 +98,11 @@ class FemiwikiCrawlingBlockerHooks implements
 	 * @return bool
 	 */
 	private static function captchaExec( WebRequest $request, User $user ): bool {
-		$requestUrl = $request->getRequestURL();
+		try {
+			$requestUrl = $request->getRequestURL();
+		} catch ( MWException $e ) {
+			return true;
+		}
 		$verifyCode = self::generateVerifyCode();
 
 		if (
