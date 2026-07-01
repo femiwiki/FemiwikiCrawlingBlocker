@@ -2,10 +2,7 @@ name: Quibble and Phan
 
 on:
   push:
-    branches:
-      - '*'
-    tags-ignore:
-      - '*.*'
+    branches: [main]
   pull_request:
 
 env:
@@ -45,8 +42,7 @@ jobs:
         with:
           persist-credentials: false
 
-      # Test-only workflow; npm caching here does not publish runtime artifacts.
-      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1 # zizmor: ignore[cache-poisoning]
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
         if: matrix.stage == 'phpunit' || matrix.stage == 'selenium'
         with:
           node-version: '16'
