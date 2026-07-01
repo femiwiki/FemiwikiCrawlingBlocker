@@ -14,14 +14,20 @@ on:
 jobs:
   create-pr:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+        with:
+          persist-credentials: false
 
       - run: |
-          echo 'CREATE_PR_BASE='$(echo "${{ github.ref_name }}" | cut -d'-' -f1 ) >> $GITHUB_ENV
+          echo 'CREATE_PR_BASE='$(echo "${GITHUB_REF_NAME}" | cut -d'-' -f1 ) >> $GITHUB_ENV
       - name: Create Pull Request
-        uses: repo-sync/pull-request@v2
+        # repo-sync/pull-request is archived but still the established action across femiwiki repos.
+        uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1 # zizmor: ignore[archived-uses]
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: Update extension test workflow on ${{ env.CREATE_PR_BASE }} branch
