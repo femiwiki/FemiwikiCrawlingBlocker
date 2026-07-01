@@ -58,7 +58,7 @@ jobs:
           node-version: '16'
           cache: npm
 
-      - uses: femiwiki/quibble-action@dc8d9ec9d6c86ba9805a77736c68f974d250aa8f # v1.0.0
+      - uses: femiwiki/quibble-action@bb9c162a76424990c3f2abc4b66dc653dfe3daeb # v2.0.0
         id: quibble
         with:
           stage: ${{ matrix.stage }}
