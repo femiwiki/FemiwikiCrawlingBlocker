@@ -1,3 +1,9 @@
+# FemiwikiCrawlingBlocker is archived.
+
+Femiwiki no longer uses it. It never blocked crawlers reliably, and as a MediaWiki extension it runs only after PHP has already taken the request, which is where the cost lies. Femiwiki now refuses crawlers in front of PHP, in the Caddy configuration of [femiwiki/infra](https://github.com/femiwiki/infra/blob/main/docker/res/Caddyfile).
+
+페미위키는 더 이상 이 확장을 쓰지 않습니다. 크롤러를 제대로 막은 적이 없고, 미디어위키 확장이라 PHP가 이미 요청을 받은 뒤에야 돌기 때문에 비용을 줄일 수 없습니다. 지금은 PHP 앞단인 [femiwiki/infra](https://github.com/femiwiki/infra/blob/main/docker/res/Caddyfile)의 Caddy 설정에서 크롤러를 거절합니다.
+
 # FemiwikiCrawlingBlocker
 
 ## Support language
